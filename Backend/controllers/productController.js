@@ -4,7 +4,7 @@ const Product = require('../models/Product');
 // Ürün oluşturma
 exports.createProduct = async (req, res) => {
   try{
-        const { name, description, price, category, stock,images } = req.body;
+        const { name, description, price, category, stock } = req.body;
         
        if (!name || !price || !category) {
   return res.status(400).json({ message: "Name, price ve category zorunludur" });
@@ -17,7 +17,7 @@ exports.createProduct = async (req, res) => {
             price,
             category,
             stock,
-            images
+          
         });
         await product.save();
         res.status(201).json({ message: 'Ürün başarıyla oluşturuldu', product  });
