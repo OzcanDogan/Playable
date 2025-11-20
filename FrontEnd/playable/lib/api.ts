@@ -45,4 +45,17 @@ export async function createProduct(body:ProductPayload) {
 
   return res.json();
 }
+// GET NEWEST PRODUCTS
+export async function getNewestProducts() {
+  const res = await fetch(`${API_URL}/products/get-newest-products`, {
+    cache: "no-store",
+  });
+  return res.json();
+}
 
+
+// GET PRODUCT BY Category
+export async function getProductsByCategory(id: string) {
+  const res = await fetch(`${API_URL}/products/get-products-by-category/${id}`);
+  return res.json();
+}

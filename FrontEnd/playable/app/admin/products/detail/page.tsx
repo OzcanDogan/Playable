@@ -1,28 +1,29 @@
-// app/admin/products/[id]/page.tsx
+"use client";
 
-import { getProductById } from "@/lib/api";
-import { Product } from "@/types/product";
+import { useRouter } from "next/navigation";
+import { useProductStore } from "@/stores/productStore";
 
-interface ProductDetailPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
- 
-
-  const { id } = await params;
-
-  const data = await getProductById(id);
-  const product: Product = data.product;
+export default function ProductDetailPage() {
+  const router = useRouter();
+  const product = useProductStore((state) => state.selectedProduct);
 
   if (!product) {
-    return <div className="p-6 text-red-500">Product not found</div>;
+    return (
+      <div className="p-6">
+        <p className="text-red-600 font-semibold">Ürün seçilmedi.</p>
+        <button
+          onClick={() => router.push("/admin/products")}
+          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          Geri Dön
+        </button>
+      </div>
+    );
   }
 
   return (
-    <div className="max-w-3xl mx-auto bg-white p-8 rounded shadow">
+    
+ <div className="max-w-3xl mx-auto bg-white p-8 rounded shadow">
       <h1 className="text-3xl font-bold mb-6">Product Detail</h1>
 
       <div className="space-y-3">
