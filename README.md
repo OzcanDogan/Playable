@@ -58,7 +58,7 @@ Product Listing
 
 Products are displayed based on their category.
 
-Each product card includes the product name, price, and image.
+Each product card includes the product name, price
 
 Users can add products to their cart.
 
@@ -97,21 +97,11 @@ Admins can add new products.
 
 Existing products can be listed.
 
-Products can be edited (optional).
-
-Products can be deleted.
-
-Stock information can be managed.
-
-Products can be assigned to categories.
-
 Category Management
 
 Admins can create categories.
 
 Categories can be listed.
-
-Categories can be activated or deactivated (optional).
 
 System Flow
 Login Process
