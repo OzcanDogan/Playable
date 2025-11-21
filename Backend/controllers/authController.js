@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
-        res.json({ token ,  message: 'Giriş Başarılı' ,  user: { id: user._id, name: user.name, email: user.email, role: user.role }});
+        res.json({ token ,  message: 'Giriş Başarılı' ,  user: { _id: user._id, name: user.name, email: user.email, role: user.role }});
        
     } catch (error) {
         console.error('Giriş işlemi başarısız:', error.message);

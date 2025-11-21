@@ -59,3 +59,52 @@ export async function getProductsByCategory(id: string) {
   const res = await fetch(`${API_URL}/products/get-products-by-category/${id}`);
   return res.json();
 }
+
+// REGISTER
+export async function register(payload: { name: string; email: string; password: string }) {
+  const res = await fetch(`${API_URL}/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(errorText || "Kayıt başarısız");
+  }
+
+  return res.json();
+}
+
+// LOGIN
+export async function login(payload: { email: string; password: string }) {
+  const res = await fetch(`${API_URL}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errorMessage = await res.text();
+    throw new Error(errorMessage || "Login failed");
+  }
+
+  return res.json(); 
+}
+export async function createOrder(body: unknown) {
+  const res = await fetch(`${API_URL}/orders/create-order`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body),
+  });
+
+  return res.json();
+}
+export async function getUserOrders(userId: string) {
+  const res = await fetch(`${API_URL}/orders/get-user-orders/${userId}`, {
+    cache: "no-store",
+  });
+  return res.json();
+}
